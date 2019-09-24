@@ -1,0 +1,301 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='Responsive Admin Dashboard Template')
+    meta(name='keywords', content='admin,dashboard')
+    meta(name='author', content='stacks')
+    // The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags
+    // Title
+    title Wetterbest
+    // Styles
+    link(href='https://fonts.googleapis.com/css?family=Ubuntu', rel='stylesheet')
+    link(href='plugins/bootstrap/css/bootstrap.min.css', rel='stylesheet')
+    link(href='plugins/font-awesome/css/font-awesome.min.css', rel='stylesheet')
+    link(href='plugins/icomoon/style.css', rel='stylesheet')
+    link(href='plugins/uniform/css/default.css', rel='stylesheet')
+    link(href='plugins/switchery/switchery.min.css', rel='stylesheet')
+    // Theme Styles
+    link(href='css/space.min.css', rel='stylesheet')
+    link(href='css/custom.css', rel='stylesheet')
+    // Loading
+    link(href='css/loading.css', rel='stylesheet')
+    // HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+    // WARNING: Respond.js doesn't work if you view the page via file://
+    //if lt IE 9
+      script(src='https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js')
+      script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
+  body
+    // Page Container
+    .page-container
+      // Page Content
+      .page-content(style='width:100%;')
+        // Page Inner
+        .page-inner
+          .page-title
+            h3.breadcrumb-header
+              | Wetterbest Oltenia 	 	  
+              img(src='https://www.wetterbest.ro/wp-content/themes/wtb-child/img/logo.png')
+              button.btn.btn-warning Update preturi
+              br
+              a.btn.btn-danger(href='/logout') Log out
+          #loadingOverlay.loading(style='display:none;') Loading…
+          #main-wrapper
+            .row
+              .col-lg-5.col-md-6
+                .panel.panel-white
+                  .panel-body
+                    h2 Tabla Cutata W8
+                    .table-responsive
+                      table#leftTable.table.table-bordered
+                        thead
+                          tr
+                            th Produs
+                            th Latime
+                            th Lungime
+                            th Buc.
+                            th Pret
+                            th Total
+                        tbody
+                          tr
+                .panel.panel-white
+                  .panel-body
+                    h2 Folie 
+                    .table-responsive
+                      table#leftSecondTable.table.table-bordered
+                        thead
+                          tr
+                            th Produs
+                            th PF/PJ
+                            th Buc.
+                            th Pret
+                            th Total
+                        tbody
+                          tr          
+              .col-lg-5.col-md-6
+                .panel.panel-white
+                  .panel-body
+                    h2 Tabla plana
+                    .table-responsive
+                      table#rightTable.table.table-bordered
+                        thead
+                          tr
+                            th Produs
+                            th Latime
+                            th Lungime
+                            th Numar buc.
+                            th Pret
+                            th Total
+                        tbody
+                          tr
+                .panel.panel-white
+                  .row
+                    .ibox
+                      .ibox-content
+                        .col-sm-6
+                          input#numeComanda.form-control(type='text', style='width:300px;', placeholder='Nume comanda' required='true')
+                          br
+                          select#judetComanda.form-control(type='text', style='width:300px;')
+                            option(selected='') Judet
+                            option(value='ALBA') ALBA
+                            option(value='ARAD') ARAD
+                            option(value='ARGES') ARGES
+                            option(value='BACAU') BACAU
+                            option(value='BIHOR') BIHOR
+                            option(value='BISTRITA-NASAUD') BISTRITA-NASAUD
+                            option(value='BOTOSANI') BOTOSANI
+                            option(value='BRAILA') BRAILA
+                            option(value='BRASOV') BRASOV
+                            option(value='BUZAU') BUZAU
+                            option(value='CALARASI') CALARASI
+                            option(value='CARAS-SEVERIN') CARAS-SEVERIN
+                            option(value='CLUJ') CLUJ
+                            option(value='CONSTANTA') CONSTANTA
+                            option(value='COVASNA') COVASNA
+                            option(value='DIMBOVITA') DIMBOVITA
+                            option(value='DOLJ') DOLJ
+                            option(value='GALATI') GALATI
+                            option(value='GIURGIU') GIURGIU
+                            option(value='GORJ') GORJ
+                            option(value='HARGHITA') HARGHITA
+                            option(value='HUNEDOARA') HUNEDOARA
+                            option(value='IALOMITA') IALOMITA
+                            option(value='IASI') IASI
+                            option(value='ILFOV') ILFOV
+                            option(value='MARAMURES') MARAMURES
+                            option(value='MEHEDINTI') MEHEDINTI
+                            option(value='MURES') MURES
+                            option(value='NEAMT') NEAMT
+                            option(value='NECUNOSCUT') NECUNOSCUT
+                            option(value='OLT') OLT
+                            option(value='PRAHOVA') PRAHOVA
+                            option(value='SALAJ') SALAJ
+                            option(value='SATU MARE') SATU MARE
+                            option(value='SIBIU') SIBIU
+                            option(value='SUCEAVA') SUCEAVA
+                            option(value='TELEORMAN') TELEORMAN
+                            option(value='TIMIS') TIMIS
+                            option(value='TULCEA') TULCEA
+                            option(value='VASLUI') VASLUI
+                            option(value='VILCEA') VILCEA
+                            option(value='VRANCEA') VRANCEA
+                          br
+                          input#orasComanda.form-control(type='text', style='width:300px;', placeholder='Oras')
+                          br
+                          input#adresaComanda.form-control(type='text', style='width:300px;', placeholder='Adresa')
+                          br
+                          input#telComanda.form-control(type='text', style='width:300px;', placeholder='Telefon')
+                          hr
+                          label(for='') Data livrare *
+                          input#dataLivrare.form-control(type='date', style='width:300px;')
+                          br
+                        .col-sm-6
+                          select.form-control(style='width:300px;')
+                            option(selected='') Palet cu
+                            option(value='') Factura
+                            option(value='') Aviz
+                          br
+                          select#docPlata.form-control(style='width:300px;')
+                            option(selected='') Doc. plata
+                            option(value='OP') OP
+                            option(value='BO') BO
+                            option(value='CEC') CEC
+                            option(value='CASH') CASH
+                          br
+                          select#zilePlata.form-control(style='width:300px;')
+                            option(selected='') Zile
+                            option(value='1') 1
+                            option(value='3') 3
+                            option(value='5') 5
+                            option(value='7') 7
+                            option(value='15') 15
+                            option(value='20') 20
+                            option(value='25') 25
+                            option(value='30') 30
+                            option(value='35') 35
+                            option(value='45') 45
+                            option(value='60') 60
+                          br
+                          select#livrare.form-control(style='width:300px;')
+                            option(selected='') Livrare cu
+                            option(value='Factura') Factura
+                            option(value='Aviz') Aviz
+                          br
+                          select#agent.form-control(style='width:300px;')
+                            option(selected='') Agent
+                            option(value='Razvan Andrei - 0744.744.648') Razvan Andrei
+                            option(value='Ana-Maria Dunavatu - 0744.777.016') Ana-Maria Dunavatu
+                            option(value='Mircea Fugaru - 0744.777.359') Mircea Fugaru
+                            option(value='Alin Mavris - 0744.777.032') Alin Mavris
+                            option(value='Iulian Neaga - 0744.777.012') Iulian Neaga
+                            option(value='Ciprian Pasca - 0744.777.036') Ciprian Pasca
+                            option(value='Attila Pasztor - 0744.777.057') Attila Pasztor
+                            option(value='Luiza Semen - 0753.080.829') Luiza Semen
+                            option(value='Ionel Stanciulescu - 0744.777.221') Ionel Stanciulescu
+                            option(value='Doru Stancu - 0744.777.459') Doru Stancu
+                            option(value='Catalin Zanfir - 0744.777.031') Catalin Zanfir
+                            option(value='Laurentiu Pirvu - 0744.777.618') Laurentiu Pirvu
+                          br
+                          select#sofer.form-control(style='width:300px;')
+                            option(selected='') Soferul incaseaza/ridica
+                            option(value='NU RIDICA') NU RIDICA
+                            option(value='Document plata') Document plata
+                            option(value='Incanseaza cash') Incaseaza cash
+                          br
+                          label(for='') Observatii
+                          textarea#obs.form-control(name='', cols='40', rows='5')
+              .col-lg-2.col-md-12
+                .panel.panel-white
+                  .text-right
+                    h4.no-m.m-t-sm Subtotal
+                    h2.no-m
+                      text#sub 0.00
+                      |  RON
+                    hr
+                    h4.no-m.m-t-sm TVA
+                    h2.no-m
+                      text#tva 0.00
+                      |  RON
+                    hr
+                    h4.no-m.m-t-md.text-success Total
+                    h1.no-m.text-success
+                      text#total 0.00
+                      |  RON
+                   
+                    br
+                  .row
+                    button.btn.btn-success(onclick="exportExcel('print');") Print excel
+                  br
+                  .row
+                    button.btn.btn-primary(onclick="exportExcel('aviz');") Aviz excel
+                  br
+                  .row
+                    button.btn.btn-danger(onclick="exportExcel('trasport');") Transport excel
+                  br
+                  br
+                  .row
+                    label Trimite toate 3 formularele pe mail
+                    br
+                    button.btn.btn-warning(data-toggle="modal" data-target="#myModal") Trimite mail
+          // Main Wrapper
+          // /Page Inner
+          // /Page Content
+          // /Page Container
+          // Zoom for old
+
+#myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') ×
+        h4#myModalLabel.modal-title E-mail excel-uri
+      .modal-body
+        h3 Completeaza cu adresa de email a destinatarului
+        br
+        h4 * Daca vrei sa trimiti la mai multe persoane pune <b>;</b> intre adrese
+        br
+        h4 Exemplu : razvan.andrei@wetterbestoltenia.ro<b>;</b>tomas.niculae@wetterbest.ro
+        div.row
+          div.col-sm-3
+            h4 Trimite catre : 
+          div.col-sm-3
+            button.btn.btn-danger(type='button', onclick='completeEmail("timisoara@wetterbestoltenia.ro;")') Timisoara 
+          div.col-sm-3
+            button.btn.btn-success(type='button', onclick='completeEmail("comenzi@wetterbestoltenia.ro;")') Comenzi 
+          div.col-sm-3
+            button.btn.btn-info(type='button', onclick='completeEmail("vanzari@wetterbestoltenia.ro;")') Vanzari   
+        hr
+        input#emailAddr.form-control(type='email', onchange='' placeholder='Email' )
+        hr
+        h2#message
+        h4 
+      .modal-footer
+        button.btn.btn-success(type='button' onclick="exportExcelAndSendMail();" data-dismiss='modal') Trimite
+        button.btn.btn-info(type='button', data-dismiss='modal') Close
+
+
+
+
+
+
+
+          script.
+            if (window.screen.width <= 1360) { document.body.style.zoom = "65%";} else
+            if (window.screen.width <= 1366) { document.body.style.zoom = "70%";} else
+            if (window.screen.width <= 1440) { document.body.style.zoom = "74%";} else
+            if (window.screen.width <= 1700) { document.body.style.zoom = "80%";} else
+            if (window.screen.width  > 1700) { document.body.style.zoom = "90%";}
+          // Javascripts
+          script(src='plugins/jquery/jquery-3.1.0.min.js')
+          script(src='plugins/bootstrap/js/bootstrap.min.js')
+          script(src='plugins/jquery-slimscroll/jquery.slimscroll.min.js')
+          script(src='plugins/uniform/js/jquery.uniform.standalone.js')
+          script(src='plugins/switchery/switchery.min.js')
+          script(src='js/space.min.js')
+          // App
+          script(src='pouchdb-7.0.0.min.js')
+          script(src='js/app.js')
+          script(src='js/export.js')
