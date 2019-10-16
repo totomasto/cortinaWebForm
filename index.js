@@ -1,4 +1,5 @@
 // base app 
+require('dotenv').config();
 const express = require('express');
 const app = module.exports = express();
 const bodyParser = require('body-parser');
@@ -15,7 +16,6 @@ const mailer = module.exports = require('express-mailer');
 
 //let controller = require('./controllers/'); //controller functions 
 let db = require('./db/'); // database pool connection 
-
 //this is not ok !  TO DO : move the mail functions and initializer in another file 
 //Configure express-mail and setup default mail data.
 mailer.extend(app, {

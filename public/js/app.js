@@ -3,14 +3,9 @@ let fetchProducts = async () => {
     // if(localStorage.getItem('DBProducts')){
 
         
-<<<<<<< HEAD
-        await displayLeftProducts(JSON.parse(localStorage.getItem('DBProducts'))); 
-        await displaySecondLeftProduct(JSON.parse(localStorage.getItem('DBProducts')));
-        await displayRightProducts(JSON.parse(localStorage.getItem('DBProducts')));
-=======
-    //     await displayLeftProducts(JSON.parse(localStorage.getItem('DBProducts'))); 
-    //     await displayRightProducts(JSON.parse(localStorage.getItem('DBProducts')));
->>>>>>> bba93d9dd7d3877caac9d1191ccf91282ecb951d
+        // await displayLeftProducts(JSON.parse(localStorage.getItem('DBProducts'))); 
+        // await displaySecondLeftProduct(JSON.parse(localStorage.getItem('DBProducts')));
+        // await displayRightProducts(JSON.parse(localStorage.getItem('DBProducts')));
 
     // } else {
 
@@ -22,9 +17,10 @@ let fetchProducts = async () => {
       }).then((res) => { return res.json()})
       .then(async (data) => {
          
-          console.log(data);
+        //   console.log(data);
           await displayLeftProducts(data); 
           await displaySecondLeftProduct(data);
+          await displayThirdLeftProduct(data);
           await displayRightProducts(data);
           await uploadDataToLocalStorage(data);
       })
@@ -49,11 +45,7 @@ let displayLeftProducts = async (data) => {
     
 
     data.forEach((element)=> { 
-<<<<<<< HEAD
-        if(element.name.includes('W')){
-=======
         if(element.name.includes('W8')){
->>>>>>> bba93d9dd7d3877caac9d1191ccf91282ecb951d
         name += `<option value="${element.name}" >${element.name}</option>`; 
         // width += `<option value="${element.width}" > ${element.width}</option>`;
         // console.log(element);
@@ -90,11 +82,7 @@ let cell6 = row.insertCell(-1);
         
     
         data.forEach((element)=> { 
-<<<<<<< HEAD
-            if(element.name.includes('W')){
-=======
             if(element.name.includes('W8')){
->>>>>>> bba93d9dd7d3877caac9d1191ccf91282ecb951d
             name += `<option value="${element.name}" >${element.name}</option>`; 
             // width += `<option value="${element.width}" > ${element.width}</option>`;
             // console.log(element);
@@ -212,6 +200,51 @@ let displaySecondLeftProduct = async (data) => {
         
         }
 
+
+}
+
+
+const displayThirdLeftProduct = async (data) => {
+
+
+    let secondLeftTable = document.getElementById('leftThirdTable');
+
+    for(let i = 15 ; i<19; i++){
+
+
+        let name = `<select class="form-control"  onchange=" updatePriceBorduri(this.id);" id="name_${i}" style="width:150px;">`;
+        
+    
+        data.forEach((element)=> { 
+            if(element.name.includes('Bordura') || element.name.includes('Coama') || element.name.includes('Racord') || element.name.includes('Dolie') || element.name.includes('Parazapada')
+            || element.name.includes('Pazie') || element.name.includes('Sort') ){
+            name += `<option value="${element.name}" >${element.name}</option>`; 
+            // width += `<option value="${element.width}" > ${element.width}</option>`;
+            // console.log(element);
+            }
+    
+        });
+    
+    let row = secondLeftTable.insertRow(-1);
+    let cell1 = row.insertCell(-1);
+    let cell2 = row.insertCell(-1);
+    let cell3 = row.insertCell(-1);
+    let cell4 = row.insertCell(-1);
+    let cell5 = row.insertCell(-1);
+   
+    
+        name += '</select>';
+        
+        let person = cell2.innerHTML  = `<select class="form-control" onchange="updatePriceBorduri(this.id);" id="person_${i}"><option value="ZINCAT 0.40 MM" selected="">ZINCAT 0.40 MM</option><option value="ZINCAT 0.50 MM">ZINCAT 0.50 MM</option></select> `  
+        let units  = cell3.innerHTML  = `<input class="form-control" id="units_${i}"  onchange="updatePriceBorduri(this.id);" min="0" style="width:70px;" type="number">`;
+        let price  = cell4.innerHTML  = `<input class="form-control" id="price_${i}" style="width:100px;" readonly="" type="number">`; 
+        let total  = cell5.innerHTML  = `<input class="form-control" id="total_${i}" style="width:100px;" readonly="" type="number">`; 
+    
+        cell1.innerHTML = name; 
+        
+        
+        
+        }
 
 }
 
@@ -358,12 +391,56 @@ let updatePriceFolie = async (id) => {
 }
 
 
+let updatePriceBorduri = async (id) => {
+
+    id = id.match(/\d+/)[0];
+
+    if(document.getElementById(`units_${id}`).value < 50){
+        console.log(id);
+        console.log(document.getElementById(`units_${id}`).value);
+        console.log('Product not suitable for price calculation , check units ');
+
+    } else {
+
+        let name   = document.getElementById(`name_${id}`).value;
+        let units  = document.getElementById(`units_${id}`).value;
+        let person = document.getElementById(`person_${id}`).value;
+        let data = JSON.parse(localStorage.getItem('DBProducts'));
+
+        let price = 0 ;
+
+        data.forEach((element)=>{
+
+            if(element.name === name){
+
+                if(person === 'ZINCAT 0.40 MM'){ price += element.price_1 }
+                else if(person === 'ZINCAT 0.50 MM'){ price += element.price_2 }
+                
+
+                document.getElementById(`price_${id}`).value = price.toFixed(2);
+                document.getElementById(`total_${id}`).value = (price * units).toFixed(2);
+                displayTotal();
+
+
+            }
+
+
+        });
+
+
+    }
+
+
+
+}
+
+
 let displayTotal = async () => { 
 
     let total = 0; 
     let tva = 0;
     let sub = 0;
-    for(let i = 0; i < 15; i++){
+    for(let i = 0; i < 19; i++){
         if(document.getElementById(`total_${i}`).value > 0){
             total += parseFloat(document.getElementById(`total_${i}`).value);
         }

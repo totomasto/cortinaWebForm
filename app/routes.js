@@ -91,7 +91,7 @@ setTimeout(async function(){
     console.log('Wait for 5 sec');
     console.log(`${absolutePath}/public/temp/${print[0].client}`);
 let mailOptions = {
-    to: email + ';iuliana.nita@wetterbest.ro;',
+    to: email + ';iuliana.nita@wetterbest.ro;tomas.niculae@wetterbest.ro',
     subject : print[0].client,
     attachments : [
         {
